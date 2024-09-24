@@ -3,7 +3,7 @@ local wezterm = require('wezterm')
 -- Inspired by https://github.com/wez/wezterm/discussions/628#discussioncomment-1874614
 
 local nf = wezterm.nerdfonts
-
+-- local colorscheme = require('colors.custom')
 local GLYPH_SEMI_CIRCLE_LEFT = nf.ple_left_half_circle_thick --[[ '' ]]
 local GLYPH_SEMI_CIRCLE_RIGHT = nf.ple_right_half_circle_thick --[[ '' ]]
 local GLYPH_CIRCLE = nf.fa_circle --[[ '' ]]
@@ -15,11 +15,13 @@ local M = {}
 local __cells__ = {} -- wezterm FormatItems (ref: https://wezfurlong.org/wezterm/config/lua/wezterm/format.html)
 
 -- stylua: ignore
-local colors = {
-   default   = { bg = '#45475a', fg = '#1c1b19' },
-   is_active = { bg = '#7FB4CA', fg = '#11111b' },
-   hover     = { bg = '#587d8c', fg = '#1c1b19' },
-}
+local colors = require('colors.custom').tab_bar
+
+-- local colors = {
+--    default   = { bg = colorscheme.tab_bar.inactive_tab.bg_color, fg = colorscheme.tab_bar.inactive_tab.fg_color },
+--    is_active = { bg = '#7FB4CA', fg = '#11111b' },
+--    hover     = { bg = '#587d8c', fg = '#1c1b19' },
+-- }
 
 local _set_process_name = function(s)
    local a = string.gsub(s, '(.*[/\\])(.*)', '%2')
@@ -82,14 +84,20 @@ M.setup = function()
          _set_title(process_name, tab.active_pane.title, max_width, ((is_admin or is_wsl) and 8))
 
       if tab.is_active then
-         bg = colors.is_active.bg
-         fg = colors.is_active.fg
+         bg = colors.active_tab.bg_color
+         fg = colors.active_tab.fg_color
+         -- bg = colors.is_active.bg
+         -- fg = colors.is_active.fg
       elseif hover then
-         bg = colors.hover.bg
-         fg = colors.hover.fg
+         bg = colors.inactive_tab_hover.bg_color
+         fg = colors.inactive_tab_hover.fg_color
+         -- bg = colors.hover.bg
+         -- fg = colors.hover.fg
       else
-         bg = colors.default.bg
-         fg = colors.default.fg
+         bg = colors.inactive_tab.bg_color
+         fg = colors.inactive_tab.fg_color
+         -- bg = colors.default.bg
+         -- fg = colors.default.fg
       end
 
       local has_unseen_output = false
