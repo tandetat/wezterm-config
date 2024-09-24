@@ -1,3 +1,4 @@
+local wezterm = require('wezterm')
 -- A slightly altered version of catppucchin mocha
 local mocha = {
    rosewater = '#f5e0dc',
@@ -28,7 +29,7 @@ local mocha = {
    crust = '#11111b',
 }
 
-local colorscheme = {
+local mocha_scheme = {
    foreground = mocha.text,
    background = mocha.base,
    cursor_bg = mocha.rosewater,
@@ -89,5 +90,12 @@ local colorscheme = {
    split = mocha.overlay0,
    compose_cursor = mocha.flamingo, -- nightbuild only
 }
+function scheme_for_appearance(appearance)
+   if appearance:find('Dark') then
+      return mocha_scheme
+   else
+      return wezterm.color.get_builtin_schemes()['Catppuccin Latte']
+   end
+end
 
-return colorscheme
+return scheme_for_appearance(wezterm.gui.get_appearance())
