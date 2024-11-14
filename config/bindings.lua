@@ -21,7 +21,7 @@ local keys = {
    { key = 'F3', mods = 'NONE', action = act.ShowLauncher },
    { key = 'F4', mods = 'NONE', action = act.ShowLauncherArgs({ flags = 'FUZZY|TABS' }) },
    {
-      key = 'F5',
+      key = 'F6',
       mods = 'NONE',
       action = act.ShowLauncherArgs({ flags = 'FUZZY|WORKSPACES' }),
    },
@@ -191,7 +191,7 @@ local mouse_bindings = {
 
 return {
    disable_default_key_bindings = true,
-   leader = { key = 'o', mods = mod.SUPER_REV },
+   leader = { key = 'mapped:o', mods = mod.SUPER_REV },
    keys = keys,
    key_tables = key_tables,
    mouse_bindings = mouse_bindings,

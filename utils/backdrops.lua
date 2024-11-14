@@ -1,7 +1,7 @@
 local wezterm = require('wezterm')
 local platform = require('utils.platform')()
-local colors = require('colors.custom')
-
+-- local colors = require('colors.custom')
+local colors = wezterm.color.get_builtin_schemes()['Tokyo Night']
 -- Seeding random numbers before generating for use
 -- Known issue with lua math library
 -- see: https://stackoverflow.com/questions/20154991/generating-uniform-random-numbers-in-lua
