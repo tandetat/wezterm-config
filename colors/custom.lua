@@ -88,7 +88,7 @@ local mocha_scheme = {
    },
    scrollbar_thumb = mocha.surface2,
    split = mocha.overlay0,
-   compose_cursor = mocha.flamingo, -- nightbuild only
+   compose_cursor = mocha.flamingo,
 }
 function scheme_for_appearance(appearance)
    if appearance:find('Dark') then
