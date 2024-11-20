@@ -1,4 +1,5 @@
 local gpu_adapters = require('utils.gpu_adapter')
+local wezterm = require('wezterm')
 local colors = wezterm.color.get_builtin_schemes()['Tokyo Night']
 local backdrops = require('utils.backdrops')
 return {
