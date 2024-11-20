@@ -1,7 +1,11 @@
 local Config = require('config')
 local wezterm = require('wezterm')
 local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
-require('utils.backdrops'):set_files():random()
+
+require('utils.backdrops')
+   :set_files()
+   -- :set_focus('#000000')
+   :random()
 
 -- require('events.right-status').setup()
 -- require('events.left-status').setup()
