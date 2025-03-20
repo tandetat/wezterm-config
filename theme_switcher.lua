@@ -18,7 +18,7 @@ local f = io.open(theme_file, 'r') ~= nil
 if not f then
    io.open(theme_file, 'w'):close()
 end
-wezterm.add_to_config_reload_watch_list(theme_file)
+-- wezterm.add_to_config_reload_watch_list(theme_file)
 
 local M = {}
 local hour = os.date('*t').hour

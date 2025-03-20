@@ -71,7 +71,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.75,
+         opacity = 0.65,
       },
    }
 end
