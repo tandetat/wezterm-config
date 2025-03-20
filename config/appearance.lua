@@ -1,26 +1,29 @@
 local gpu_adapters = require('utils.gpu_adapter')
 local wezterm = require('wezterm')
-local colors = wezterm.color.get_builtin_schemes()['Tokyo Night']
+local theme = require('theme_switcher')
+local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
+local colors, _ = wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
+
 local backdrops = require('utils.backdrops')
 return {
-   max_fps = 120,
+   max_fps = 240,
    front_end = 'WebGpu',
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
    -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Dx12', 'IntegratedGpu'),
 
    -- cursor
-   animation_fps = 120,
+   animation_fps = 240,
    cursor_blink_ease_in = 'EaseOut',
    cursor_blink_ease_out = 'EaseOut',
    default_cursor_style = 'BlinkingBlock',
    cursor_blink_rate = 650,
 
    -- color scheme
-   -- colors = colors,
+   colors = colors,
 
    -- background
-   background = backdrops:create_opts(),
+   background = backdrops:initial_options(),
 
    -- scrollbar
    enable_scroll_bar = true,

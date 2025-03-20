@@ -1,6 +1,9 @@
 local wezterm = require('wezterm')
--- local colors = require('colors.custom')
-local colors = wezterm.color.get_builtin_schemes()['Tokyo Night']
+-- local colors = wezterm.color.get_builtin_schemes()[require('colors.custom')]
+local theme = require('theme_switcher')
+local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
+local colors, _ = wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
+-- local colors = wezterm.color.get_builtin_schemes()['Tokyo Night']
 -- Seeding random numbers before generating for use
 -- Known issue with lua math library
 -- see: https://stackoverflow.com/questions/20154991/generating-uniform-random-numbers-in-lua
@@ -53,9 +56,10 @@ function BackDrops:set_focus(focus_color)
    return self
 end
 
+-- @private
 ---Create the `background` options with the current image
 ---@return table
-function BackDrops:create_opts()
+function BackDrops:_create_opts()
    return {
       {
          source = { File = self.files[self.current_idx] },
@@ -67,17 +71,47 @@ function BackDrops:create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.96,
+         opacity = 0.75,
       },
    }
+end
+---Create the `background` options for focus mode
+---@private
+---@return table
+function BackDrops:_create_focus_opts()
+   return {
+      {
+         source = { Color = self.focus_color },
+         height = '120%',
+         width = '120%',
+         vertical_offset = '-10%',
+         horizontal_offset = '-10%',
+         opacity = 1,
+      },
+   }
+end
+
+---Set the initial options for `background`
+---@param focus_on boolean? focus mode on or off
+function BackDrops:initial_options(focus_on)
+   focus_on = focus_on or false
+   assert(type(focus_on) == 'boolean', 'BackDrops:initial_options - Expected a boolean')
+
+   self.focus_on = focus_on
+   if focus_on then
+      return self:_create_focus_opts()
+   end
+
+   return self:_create_opts()
 end
 
 ---Override the current window options for background
 ---@private
 ---@param window any WezTerm Window see: https://wezfurlong.org/wezterm/config/lua/window/index.html
-function BackDrops:_set_opt(window)
+---@param background_opts table background option
+function BackDrops:_set_opt(window, background_opts)
    window:set_config_overrides({
-      background = self:create_opts(),
+      background = background_opts,
       enable_tab_bar = window:effective_config().enable_tab_bar,
    })
 end
@@ -122,7 +156,7 @@ function BackDrops:random(window)
    self.current_idx = math.random(#self.files)
 
    if window ~= nil then
-      self:_set_opt(window)
+      self:_set_opt(window, self:_create_opts())
    end
 end
 
@@ -134,7 +168,7 @@ function BackDrops:cycle_forward(window)
    else
       self.current_idx = self.current_idx + 1
    end
-   self:_set_opt(window)
+   self:_set_opt(window, self:_create_opts())
 end
 
 ---Cycle the loaded `files` and select the previous background
@@ -145,7 +179,7 @@ function BackDrops:cycle_back(window)
    else
       self.current_idx = self.current_idx - 1
    end
-   self:_set_opt(window)
+   self:_set_opt(window, self:_create_opts())
 end
 
 ---Set a specific background from the `files` array
@@ -158,19 +192,21 @@ function BackDrops:set_img(window, idx)
    end
 
    self.current_idx = idx
-   self:_set_opt(window)
+   self:_set_opt(window, self:_create_opts())
 end
 
 ---Toggle the focus mode
 ---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:toggle_focus(window)
+   local background_opts
    if self.focus_on then
-      self:set_img(window, self.current_idx)
+      background_opts = self:_create_opts()
       self.focus_on = false
    else
-      self:_set_focus_opt(window)
+      background_opts = self:_create_focus_opts()
       self.focus_on = true
    end
+   self:_set_opt(window, background_opts)
 end
 
 return BackDrops:init()
