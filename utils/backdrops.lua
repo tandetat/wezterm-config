@@ -2,8 +2,8 @@ local wezterm = require('wezterm')
 -- local colors = wezterm.color.get_builtin_schemes()[require('colors.custom')]
 local theme = require('theme_switcher')
 local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
-local colors, _ = wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
--- local colors = wezterm.color.get_builtin_schemes()['Tokyo Night']
+local colors, metadata =
+   wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
 -- Seeding random numbers before generating for use
 -- Known issue with lua math library
 -- see: https://stackoverflow.com/questions/20154991/generating-uniform-random-numbers-in-lua
@@ -71,7 +71,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.65,
+         opacity = (metadata.name == 'kanagawa-paper-ink' and 0.96) or 0.65,
       },
    }
 end
