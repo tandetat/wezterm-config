@@ -1,9 +1,13 @@
 local gpu_adapters = require('utils.gpu_adapter')
 local wezterm = require('wezterm')
 local theme = require('theme_switcher')
-local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
-local colors, _ = wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
-
+local colors
+if theme.color_scheme == 'ash' then
+   colors = require('colors.ash')
+else
+   local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
+   colors, _ = wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
+end
 local backdrops = require('utils.backdrops')
 return {
    max_fps = 240,

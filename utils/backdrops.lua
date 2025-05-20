@@ -1,9 +1,16 @@
 local wezterm = require('wezterm')
 -- local colors = wezterm.color.get_builtin_schemes()[require('colors.custom')]
 local theme = require('theme_switcher')
-local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
-local colors, metadata =
-   wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
+local colors, metadata
+if theme.color_scheme == 'ash' then
+   colors = require('colors.ash')
+   metadata = {
+      name = theme.color_scheme,
+   }
+else
+   local color_scheme_dir = wezterm.home_dir .. '/.config/wezterm/colors/'
+   colors, metadata = wezterm.color.load_scheme(color_scheme_dir .. theme.color_scheme .. '.toml')
+end
 -- Seeding random numbers before generating for use
 -- Known issue with lua math library
 -- see: https://stackoverflow.com/questions/20154991/generating-uniform-random-numbers-in-lua
@@ -71,7 +78,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = (metadata.name == 'kanagawa-paper-ink' and 0.96) or 0.65,
+         opacity = (metadata.name == 'kanagawa-paper-canvas' and 0.65) or 0.96,
       },
    }
 end
