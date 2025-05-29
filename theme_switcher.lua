@@ -83,6 +83,7 @@ wezterm.on('window-config-reloaded', function(window, _)
    --    new_theme = theme_default
    -- end
    -- M.color_scheme = 'iTerm2 Pastel Dark Background'
+   appearance = wezterm.gui.get_appearance()
    local new_theme = appearance:find('Light') and 'kanagawa-paper-canvas' or 'kanagawa-paper-ink'
    if new_theme ~= M.color_scheme then
       M.apply_theme(window, new_theme)
