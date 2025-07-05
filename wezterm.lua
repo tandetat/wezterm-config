@@ -8,7 +8,6 @@ require('utils.backdrops')
    -- :set_focus('#000000')
    :random()
 
-require('config.tabline')
 local config = Config:init()
    :append(require('config.colorscheme'))
    :append(require('config.appearance'))
@@ -40,4 +39,5 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
    window:set_config_overrides(overrides)
 end)
 smart_splits.apply_to_config(config)
+require('config.tabline')(config)
 return config.options
