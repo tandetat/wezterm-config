@@ -40,4 +40,16 @@ wezterm.on('user-var-changed', function(window, pane, name, value)
 end)
 smart_splits.apply_to_config(config)
 require('config.tabline')(config)
+config:append({
+   window_decorations = 'RESIZE',
+   -- tab_bar_at_bottom = true,
+   hide_tab_bar_if_only_one_tab = true,
+   window_frame = {
+      -- no idea how to make these transparent
+      inactive_titlebar_bg = 'none',
+      active_titlebar_bg = 'none',
+   },
+   -- window_background_opacity = 0.85,
+   macos_window_background_blur = 50,
+})
 return config.options

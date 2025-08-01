@@ -78,7 +78,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = (metadata.name == 'kanagawa-paper-canvas' and 0.65) or 0.96,
+         opacity = (metadata.name == 'kanagawa-paper-canvas' and 0.65) or 0.80,
       },
    }
 end
@@ -93,7 +93,7 @@ function BackDrops:_create_focus_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 1,
+         opacity = 0.96,
       },
    }
 end

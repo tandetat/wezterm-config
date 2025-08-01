@@ -56,6 +56,7 @@ function M.apply_theme(window, theme)
    window:set_config_overrides({
       color_scheme = theme,
    })
+   -- os.execute('export FZF_DEFAULT_OPTS=')
 end
 
 function M.apply_tabline_theme(theme)
