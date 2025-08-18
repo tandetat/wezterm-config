@@ -193,7 +193,7 @@ local keys = {
    -- resizes fonts
    {
       key = 'f',
-      mods = 'LEADER',
+      mods = mod.SUPER_REV,
       action = act.ActivateKeyTable({
          name = 'resize_font',
          one_shot = false,

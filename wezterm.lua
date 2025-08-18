@@ -49,7 +49,7 @@ config:append({
       inactive_titlebar_bg = 'none',
       active_titlebar_bg = 'none',
    },
-   -- window_background_opacity = 0.85,
+   window_background_opacity = 0.1,
    macos_window_background_blur = 50,
 })
 return config.options

@@ -5,7 +5,7 @@ local theme = require('theme_switcher')
 return function(config)
    tabline.setup({
       options = {
-         theme_overrides = require('colors.wezterm_tabline.' .. theme.color_scheme).theme_overrides,
+         theme_overrides = require('colors.wezterm_tabline.' .. theme.color_scheme),
       },
       sections = {
          tabline_a = { 'mode' },

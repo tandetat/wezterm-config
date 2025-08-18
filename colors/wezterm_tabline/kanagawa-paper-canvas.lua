@@ -6,37 +6,57 @@
 
 local M = {}
 
-M.theme_overrides = {
-  normal_mode = {
-    a = { fg = "#ecece8", bg = "#618bb6" },
-    b = { fg = "#618bb6", bg = "#ecece8" },
-    c = { fg = "#858479", bg = "#cbc8bc" },
-  },
-  copy_mode = {
-    a = { fg = "#ecece8", bg = "#b35560" },
-    b = { fg = "#b35560", bg = "#ecece8" },
-    c = { fg = "#858479", bg = "#cbc8bc" },
-  },
-  search_mode = {
-    a = { fg = "#ecece8", bg = "#a398bf" },
-    b = { fg = "#a398bf", bg = "#ecece8" },
-    c = { fg = "#858479", bg = "#cbc8bc" },
-  },
-  window_mode = {
-    a = { fg = "#ecece8", bg = "#526994" },
-    b = { fg = "#526994", bg = "#ecece8" },
-    c = { fg = "#858479", bg = "#cbc8bc" },
-  },
-  resize_mode = {
-    a = { fg = "#ecece8", bg = "#b8805e" },
-    b = { fg = "#b8805e", bg = "#ecece8" },
-    c = { fg = "#858479", bg = "#cbc8bc" },
-  },
-  tab = {
-    active = { fg = '#618bb6', bg = '#e1e1de', bold = true },
-    inactive = { fg = '#858479', bg = '#cbc8bc' },
-    inactive_hover = { fg = '#ac7085', bg = '#e1e1de' },
-  }
+M = {
+   normal_mode = {
+      a = { fg = '#ecece8', bg = '#929fb9' },
+      b = { fg = '#929fb9', bg = '#ecece8' },
+      c = { fg = '#9d9992', bg = '#d1cfc5' },
+   },
+   copy_mode = {
+      a = { fg = '#ecece8', bg = '#c58c89' },
+      b = { fg = '#c58c89', bg = '#ecece8' },
+      c = { fg = '#9d9992', bg = '#d1cfc5' },
+   },
+   search_mode = {
+      a = { fg = '#ecece8', bg = '#c1b4c1' },
+      b = { fg = '#c1b4c1', bg = '#ecece8' },
+      c = { fg = '#9d9992', bg = '#d1cfc5' },
+   },
+   window_mode = {
+      a = { fg = '#ecece8', bg = '#929fb9' },
+      b = { fg = '#929fb9', bg = '#ecece8' },
+      c = { fg = '#9d9992', bg = '#d1cfc5' },
+   },
+   resize_mode = {
+      a = { fg = '#ecece8', bg = '#c39e87' },
+      b = { fg = '#c39e87', bg = '#ecece8' },
+      c = { fg = '#9d9992', bg = '#d1cfc5' },
+   },
+   tab = {
+      active = { fg = '#929fb9', bg = '#e1e1de', bold = true },
+      inactive = { fg = '#9d9992', bg = '#d1cfc5' },
+      inactive_hover = { fg = '#a690a8', bg = '#e1e1de' },
+   },
+   ansi = {
+      '#b7b7a9',
+      '#c58c89',
+      '#8ba59e',
+      '#b9a679',
+      '#91acb8',
+      '#a690a8',
+      '#929fb9',
+      '#b7b7a9',
+   },
+   brights = {
+      '#bebeb0',
+      '#c99895',
+      '#93aea7',
+      '#c2ae7f',
+      '#a0bdca',
+      '#af9bb0',
+      '#9da8c0',
+      '#bebeb0',
+   },
 }
 
 return M
